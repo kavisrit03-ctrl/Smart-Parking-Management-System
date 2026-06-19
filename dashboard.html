@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Parking Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .slot {
+            background: white;
+            width: 250px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px gray;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 180px;
+        }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🚗 Smart Parking Management System</h1>
+
+    <h3>Available Slots: {{ available }}</h3>
+    <h3>Occupied Slots: {{ occupied }}</h3>
+
+    <hr>
+
+    <form action="/search" method="POST">
+        <input type="text" name="vehicle" placeholder="Enter Vehicle Number">
+        <button type="submit">Search Vehicle</button>
+    </form>
+
+    <hr>
+
+    {% for slot, details in slots.items() %}
+
+    <div class="slot">
+
+        <h3>{{ slot }}</h3>
+
+      {% if details.status == "Available" %}
+
+<p style="color:green;">
+    <b>Status:</b> 🟢 Available
+</p>
+
+{% else %}
+
+<p style="color:red;">
+    <b>Status:</b> 🔴 Occupied
+</p>
+
+{% endif %}  
+
+        {% if details.status == "Available" %}
+
+        <form action="/book/{{ slot }}" method="POST">
+
+            <input type="text"
+                   name="vehicle"
+                   placeholder="Vehicle Number"
+                   required>
+
+            <br>
+
+            <input type="number"
+                   name="hours"
+                   placeholder="Parking Hours"
+                   required>
+
+            <br><br>
+
+            <button type="submit">
+                Book Now
+            </button>
+
+        </form>
+
+        {% else %}
+
+        <p><b>Vehicle:</b> {{ details.vehicle }}</p>
+
+        <p><b>Fee:</b> ₹{{ details.fee }}</p>
+
+        <a href="/release/{{ slot }}">
+            <button>Release Slot</button>
+        </a>
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+</body>
+</html>
+<form action="/search" method="POST">
+    <input type="text"
+           name="vehicle"
+           placeholder="Enter Vehicle Number"
+           required>
+
+    <button type="submit">
+        Search Vehicle
+    </button>
+</form>
+
+<br>
+<a href="/admin">
+    <button>👨‍💼 Admin Dashboard</button>
+</a>
+
+<br><br>
