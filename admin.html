@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Admin Dashboard</title>
+
+```
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+    }
+
+    .card{
+        background: white;
+        width: 400px;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+    }
+
+    h1{
+        color: #333;
+    }
+
+    h3{
+        color: #555;
+    }
+
+    button{
+        padding: 10px 20px;
+        border: none;
+        background: green;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover{
+        background: darkgreen;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="card">
+
+    <h1>👨‍💼 Admin Dashboard</h1>
+
+    <h3>Total Slots: {{ total_slots }}</h3>
+
+    <h3>🟢 Available Slots: {{ available }}</h3>
+
+    <h3>🔴 Occupied Slots: {{ occupied }}</h3>
+
+    <br>
+
+    <a href="/">
+        <button>⬅ Back to Dashboard</button>
+    </a>
+
+</div>
+```
+
+</body>
+</html>
